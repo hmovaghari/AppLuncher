@@ -5,7 +5,7 @@
 **A lightweight, blazing-fast, and customizable application launcher for Windows.**
 
 ![C#](https://img.shields.io/badge/Language-C%23-blue?style=for-the-badge&logo=csharp)
-![.NET](https://img.shields.io/badge/Framework-.NET%208.0%20%2F%20Framework-512BD4?style=for-the-badge&logo=dotnet)
+![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8-512BD4?style=for-the-badge&logo=dotnet)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
@@ -17,13 +17,13 @@
 
 ## 💡 What is AppLuncher?
 
-**AppLuncher** is a Windows Forms application built with C# designed to replace messy desktop shortcuts with a clean, organized, and lightning-fast command hub. Whether you are a power user, developer, or gamer, AppLuncher lets you access your favorite programs, tools, and scripts in milliseconds.
+**AppLuncher** is a Windows Forms application built with **C# and .NET Framework 4.8**. It is designed to replace messy desktop shortcuts with a clean, organized, and lightning-fast command hub. Whether you are a power user, developer, or gamer, AppLuncher lets you access your favorite programs, tools, and scripts in milliseconds.
 
 ---
 
 ## ✨ Features
 
-- ⚡ **Lightweight & Fast:** Starts instantly with minimal RAM and CPU usage.
+- ⚡ **Lightweight & Fast:** Designed specifically for Windows using .NET Framework 4.8 for maximum compatibility.
 - 🎯 **Quick Launch:** Organize software into clean categories and launch them with a single click or keypress.
 - 📌 **System Tray Integration:** Minimize to the system tray and keep your desktop clean.
 - 🔍 **Search & Filter:** Instant search capability to find your apps without browsing menus.
@@ -46,8 +46,8 @@
 
 ### Prerequisites
 
-- **OS:** Windows 10 / 11
-- **Runtime:** [.NET Desktop Runtime](https://dotnet.microsoft.com/download) (or .NET Framework depending on build)
+- **OS:** Windows 7 SP1 / 8.1 / 10 / 11
+- **Runtime:** [.NET Framework 4.8 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 
 ### Installation & Run
 
