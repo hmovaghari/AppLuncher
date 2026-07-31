@@ -26,5 +26,140 @@ namespace AppLuncher.Properties
                 return defaultInstance;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string JsonDatabasePath
+        {
+            get
+            {
+                return ((string)(this["JsonDatabasePath"]));
+            }
+            set
+            {
+                this["JsonDatabasePath"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1, -1")]
+        public global::System.Drawing.Point WindowLocation
+        {
+            get
+            {
+                return ((global::System.Drawing.Point)(this["WindowLocation"]));
+            }
+            set
+            {
+                this["WindowLocation"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1100, 670")]
+        public global::System.Drawing.Size WindowSize
+        {
+            get
+            {
+                return ((global::System.Drawing.Size)(this["WindowSize"]));
+            }
+            set
+            {
+                this["WindowSize"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsWindowMaximized
+        {
+            get
+            {
+                return ((bool)(this["IsWindowMaximized"]));
+            }
+            set
+            {
+                this["IsWindowMaximized"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MediumIcons")]
+        public string ContentViewMode
+        {
+            get
+            {
+                return ((string)(this["ContentViewMode"]));
+            }
+            set
+            {
+                this["ContentViewMode"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("275")]
+        public int MainSplitterDistance
+        {
+            get
+            {
+                return ((int)(this["MainSplitterDistance"]));
+            }
+            set
+            {
+                this["MainSplitterDistance"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseDarkTheme
+        {
+            get
+            {
+                return ((bool)(this["UseDarkTheme"]));
+            }
+            set
+            {
+                this["UseDarkTheme"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("en")]
+        public string ApplicationLanguage
+        {
+            get
+            {
+                return ((string)(this["ApplicationLanguage"]));
+            }
+            set
+            {
+                this["ApplicationLanguage"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CheckForUpdatesAtStartup
+        {
+            get
+            {
+                return ((bool)(this["CheckForUpdatesAtStartup"]));
+            }
+            set
+            {
+                this["CheckForUpdatesAtStartup"] = value;
+            }
+        }
     }
 }

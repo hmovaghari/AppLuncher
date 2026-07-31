@@ -1,0 +1,43 @@
+{
+  "RootGroups": [
+    {
+      "Id": "3bf20e4d-36c1-4db9-b831-ab6ff0039f9e",
+      "Name": "Development",
+      "ChildGroups": [
+        {
+          "Id": "00d261ea-c652-4c15-87a2-d8562768b14a",
+          "Name": "Web Projects",
+          "ChildGroups": [],
+          "Items": []
+        }
+      ],
+      "Items": [
+        {
+          "Id": "54a87fae-d22c-4c92-8240-fb858488d29c",
+          "Name": "Open Project Tools",
+          "IconPath": "C:\\Icons\\development.ico",
+          "Actions": [
+            {
+              "Id": "101a4363-97af-40a2-a78e-f95bf614d1ce",
+              "ProgramPath": "C:\\Program Files\\Microsoft VS Code\\Code.exe",
+              "Arguments": "C:\\Source\\MyProject",
+              "WorkingDirectory": "C:\\Source\\MyProject",
+              "WaitForExit": false,
+              "DelayAfterMs": 1000,
+              "Order": 1
+            },
+            {
+              "Id": "a735a060-bdc0-49ba-8320-ddb9d0355910",
+              "ProgramPath": "C:\\Windows\\System32\\cmd.exe",
+              "Arguments": "/k dotnet run",
+              "WorkingDirectory": "C:\\Source\\MyProject",
+              "WaitForExit": false,
+              "DelayAfterMs": 0,
+              "Order": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
