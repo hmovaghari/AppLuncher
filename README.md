@@ -16,15 +16,15 @@
 
 ---
 
-## 📥 Downloads (v1.0 - Stable) / دانلودها (نسخه پایدار ۱.۰)
+## 📥 Downloads (v1.1 - Stable) / دانلودها (نسخه پایدار ۱.۱)
 
 Get the latest stable version of **AppLuncher** below:
 آخرین نسخه پایدار **AppLuncher** را از لینک‌های زیر دریافت کنید:
 
 | Version / نسخه | Type / نوع | Download Link / لینک دانلود |
 | :--- | :--- | :--- |
-| **v1.0** | 🛠️ **Installer (Setup)** / نصب‌کننده | [Download `.exe` Setup](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.0/AppLuncher.1.0.Setup.exe) |
-| **v1.0** | 🚀 **Portable (ZIP)** / نسخه پرتابل | [Download `.zip` Portable](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.0/AppLuncher.1.0.zip) |
+| **v1.1** | 🛠️ **Installer (Setup)** / نصب‌کننده | [Download `.exe` Setup](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.1/AppLuncher.1.1.Setup.exe) |
+| **v1.1** | 🚀 **Portable (ZIP)** / نسخه پرتابل | [Download `.zip` Portable](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.1/AppLuncher.1.1.zip) |
 
 > [!TIP]
 > Use the **Installer** for a permanent installation on your system, or the **Portable** version if you want to run it directly from a USB drive without installation.
