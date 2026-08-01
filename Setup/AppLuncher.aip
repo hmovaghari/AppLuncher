@@ -4,7 +4,7 @@ AIEdition=1
 GUID={46A9C9EB-5E43-481B-BD40-1C952E014861}
 AppName=AppLuncher
 AppEdition=
-AppVersion=1.0
+AppVersion=1.1
 GetVerFromExe=0
 AppDescription=
 CompanyName=Hamed Movaghari
@@ -39,7 +39,7 @@ CloseAppFile=File.exe
 CloseAppText=App Name
 PackageType=0
 SetupFolder=D:\Source\AppLuncher\AppLuncher\AppLuncher\bin\Setup
-SetupFileName=AppLuncher 1.0 Setup
+SetupFileName=AppLuncher 1.1 Setup
 IconFile=Default
 SourceDir=D:\Source\AppLuncher\AppLuncher\AppLuncher\bin\Release
 InstallDir=<ProgramFiles>\<AppName>
@@ -165,7 +165,7 @@ INISkipOnUpdate=0
 CustomTemplate=0
 TotalFiles=2
 SourceDirFiles=5
-SourceDirSize=1708402
+SourceDirSize=1711563
 
 [GUI]
 FontName=Verdana
