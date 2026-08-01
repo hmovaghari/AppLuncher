@@ -12,12 +12,14 @@ using AppLuncher.Forms;
 using AppLuncher.Helpers;
 using AppLuncher.Models;
 using AppLuncher.Services;
+using Newtonsoft.Json;
 
 namespace AppLuncher
 {
     public partial class Form1 : Form
     {
-        private readonly decimal Version = 1.0M;
+        private const string ClipboardFormat = "AppLuncher.ClipboardPayload.v1";
+        private readonly decimal Version = 1.1M;
         private readonly JsonDatabaseService databaseService = new JsonDatabaseService();
         private readonly LauncherExecutionService executionService = new LauncherExecutionService();
         private readonly UpdateService updateService = new UpdateService();
@@ -28,8 +30,6 @@ namespace AppLuncher
         private ViewMode currentViewMode;
         private bool useDarkTheme;
         private bool restoringUserInterfaceSettings;
-        private LauncherGroup copiedGroup;
-        private LauncherItem copiedLauncherItem;
 
         public Form1()
         {
@@ -603,9 +603,11 @@ namespace AppLuncher
                 return;
             }
 
-            copiedGroup = ModelCloner.Clone(group);
-            copiedLauncherItem = null;
-            locationStatusLabel.Text = "Copied group: " + group.Name;
+            SetClipboardPayload(new ClipboardPayload
+            {
+                Type = ClipboardPayloadType.Group,
+                Group = ModelCloner.Clone(group)
+            }, "group", group.Name);
         }
 
         private void CopyLauncher(LauncherItem item)
@@ -615,18 +617,26 @@ namespace AppLuncher
                 return;
             }
 
-            copiedLauncherItem = ModelCloner.Clone(item);
-            copiedGroup = null;
-            locationStatusLabel.Text = "Copied launcher: " + item.Name;
+            SetClipboardPayload(new ClipboardPayload
+            {
+                Type = ClipboardPayloadType.Launcher,
+                LauncherItem = ModelCloner.Clone(item)
+            }, "launcher", item.Name);
         }
 
         private void Paste_Click(object sender, EventArgs e)
         {
             LauncherGroup destinationGroup = SelectedGroup;
+            ClipboardPayload payload = GetClipboardPayload();
 
-            if (copiedGroup != null)
+            if (payload == null)
             {
-                LauncherGroup groupCopy = ModelCloner.DuplicateGroup(copiedGroup);
+                return;
+            }
+
+            if (payload.Type == ClipboardPayloadType.Group)
+            {
+                LauncherGroup groupCopy = ModelCloner.DuplicateGroup(payload.Group);
                 if (destinationGroup == null)
                 {
                     database.RootGroups.Add(groupCopy);
@@ -640,7 +650,7 @@ namespace AppLuncher
                 return;
             }
 
-            if (copiedLauncherItem != null)
+            if (payload.Type == ClipboardPayloadType.Launcher)
             {
                 if (destinationGroup == null)
                 {
@@ -649,11 +659,49 @@ namespace AppLuncher
                     return;
                 }
 
-                destinationGroup.Items.Add(ModelCloner.DuplicateLauncherItem(copiedLauncherItem));
+                destinationGroup.Items.Add(ModelCloner.DuplicateLauncherItem(payload.LauncherItem));
                 SaveAndRefresh(destinationGroup.Id);
             }
         }
 
+        private void SetClipboardPayload(ClipboardPayload payload, string itemType, string itemName)
+        {
+            try
+            {
+                Clipboard.SetData(ClipboardFormat, JsonConvert.SerializeObject(payload));
+                locationStatusLabel.Text = string.Format("Copied {0}: {1}", itemType, itemName);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this,
+                    "The item could not be copied to the Windows clipboard.\r\n\r\n" + exception.Message,
+                    "AppLuncher", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static ClipboardPayload GetClipboardPayload()
+        {
+            try
+            {
+                if (!Clipboard.ContainsData(ClipboardFormat))
+                {
+                    return null;
+                }
+
+                string serializedPayload = Clipboard.GetData(ClipboardFormat) as string;
+                if (string.IsNullOrWhiteSpace(serializedPayload))
+                {
+                    return null;
+                }
+
+                ClipboardPayload payload = JsonConvert.DeserializeObject<ClipboardPayload>(serializedPayload);
+                return payload != null && payload.IsValid ? payload : null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         private void DeleteGroup(LauncherGroup group)
         {
             if (group == null)
@@ -1199,7 +1247,8 @@ namespace AppLuncher
 
         private bool CanPasteIntoSelectedGroup()
         {
-            return copiedGroup != null || (copiedLauncherItem != null && SelectedGroup != null);
+            ClipboardPayload payload = GetClipboardPayload();
+            return payload != null && (payload.Type == ClipboardPayloadType.Group || SelectedGroup != null);
         }
 
         private enum ViewMode
@@ -1230,6 +1279,31 @@ namespace AppLuncher
             public LauncherItem Item { get; private set; }
 
             public LauncherGroup ParentGroup { get; private set; }
+        }
+
+        private enum ClipboardPayloadType
+        {
+            Group,
+            Launcher
+        }
+
+        private sealed class ClipboardPayload
+        {
+            public ClipboardPayloadType Type { get; set; }
+
+            public LauncherGroup Group { get; set; }
+
+            public LauncherItem LauncherItem { get; set; }
+
+            [JsonIgnore]
+            public bool IsValid
+            {
+                get
+                {
+                    return (Type == ClipboardPayloadType.Group && Group != null) ||
+                        (Type == ClipboardPayloadType.Launcher && LauncherItem != null);
+                }
+            }
         }
     }
 }
