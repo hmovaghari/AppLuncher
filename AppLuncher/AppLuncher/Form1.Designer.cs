@@ -84,13 +84,13 @@ namespace AppLuncher
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.newGroupButton = new System.Windows.Forms.ToolStripButton();
             this.newLauncherButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.upButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editButton = new System.Windows.Forms.ToolStripButton();
             this.copyButton = new System.Windows.Forms.ToolStripButton();
             this.pasteButton = new System.Windows.Forms.ToolStripButton();
             this.deleteButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.viewButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.largeIconsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediumIconsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,6 +115,7 @@ namespace AppLuncher
             this.searchActionDetailsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.searchLabel = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.groupsTreeView = new System.Windows.Forms.TreeView();
             this.treeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -145,7 +146,6 @@ namespace AppLuncher
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.locationStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.databaseStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.mainToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
@@ -198,6 +198,11 @@ namespace AppLuncher
             this.newLauncherButton.Text = "New Launcher";
             this.newLauncherButton.Click += new System.EventHandler(this.NewLauncher_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 24);
+            // 
             // upButton
             // 
             this.upButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -243,11 +248,6 @@ namespace AppLuncher
             this.deleteButton.Size = new System.Drawing.Size(44, 21);
             this.deleteButton.Text = "Delete";
             this.deleteButton.Click += new System.EventHandler(this.Delete_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 24);
             // 
             // viewButton
             // 
@@ -446,6 +446,11 @@ namespace AppLuncher
             this.searchLabel.Size = new System.Drawing.Size(45, 21);
             this.searchLabel.Text = "Search:";
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 24);
+            // 
             // mainSplitContainer
             // 
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -483,43 +488,43 @@ namespace AppLuncher
             this.treeNewLauncherMenuItem,
             this.treeSeparator,
             this.treeRenameMenuItem,
-            this.treeDeleteMenuItem,
             this.treeCopyMenuItem,
-            this.treePasteMenuItem});
+            this.treePasteMenuItem,
+            this.treeDeleteMenuItem});
             this.treeContextMenu.Name = "treeContextMenu";
-            this.treeContextMenu.Size = new System.Drawing.Size(157, 142);
+            this.treeContextMenu.Size = new System.Drawing.Size(181, 164);
             this.treeContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.TreeContextMenu_Opening);
             // 
             // treeNewGroupMenuItem
             // 
             this.treeNewGroupMenuItem.Name = "treeNewGroupMenuItem";
-            this.treeNewGroupMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeNewGroupMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeNewGroupMenuItem.Text = "New group...";
             this.treeNewGroupMenuItem.Click += new System.EventHandler(this.NewGroup_Click);
             // 
             // treeNewLauncherMenuItem
             // 
             this.treeNewLauncherMenuItem.Name = "treeNewLauncherMenuItem";
-            this.treeNewLauncherMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeNewLauncherMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeNewLauncherMenuItem.Text = "New launcher...";
             this.treeNewLauncherMenuItem.Click += new System.EventHandler(this.NewLauncher_Click);
             // 
             // treeSeparator
             // 
             this.treeSeparator.Name = "treeSeparator";
-            this.treeSeparator.Size = new System.Drawing.Size(153, 6);
+            this.treeSeparator.Size = new System.Drawing.Size(177, 6);
             // 
             // treeRenameMenuItem
             // 
             this.treeRenameMenuItem.Name = "treeRenameMenuItem";
-            this.treeRenameMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeRenameMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeRenameMenuItem.Text = "Rename...";
             this.treeRenameMenuItem.Click += new System.EventHandler(this.EditTreeGroup_Click);
             // 
             // treeDeleteMenuItem
             // 
             this.treeDeleteMenuItem.Name = "treeDeleteMenuItem";
-            this.treeDeleteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeDeleteMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeDeleteMenuItem.Text = "Delete";
             this.treeDeleteMenuItem.Click += new System.EventHandler(this.DeleteTreeGroup_Click);
             // 
@@ -527,7 +532,7 @@ namespace AppLuncher
             // 
             this.treeCopyMenuItem.Name = "treeCopyMenuItem";
             this.treeCopyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.treeCopyMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeCopyMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treeCopyMenuItem.Text = "Copy";
             this.treeCopyMenuItem.Click += new System.EventHandler(this.CopyTreeGroup_Click);
             // 
@@ -535,7 +540,7 @@ namespace AppLuncher
             // 
             this.treePasteMenuItem.Name = "treePasteMenuItem";
             this.treePasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.treePasteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treePasteMenuItem.Size = new System.Drawing.Size(180, 22);
             this.treePasteMenuItem.Text = "Paste";
             this.treePasteMenuItem.Click += new System.EventHandler(this.Paste_Click);
             // 
@@ -590,9 +595,9 @@ namespace AppLuncher
             this.newLauncherMenuItem,
             this.contextSeparator1,
             this.editMenuItem,
-            this.deleteMenuItem,
             this.copyMenuItem,
-            this.pasteMenuItem});
+            this.pasteMenuItem,
+            this.deleteMenuItem});
             this.contentContextMenu.Name = "contentContextMenu";
             this.contentContextMenu.Size = new System.Drawing.Size(157, 164);
             this.contentContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ContentContextMenu_Opening);
@@ -693,11 +698,6 @@ namespace AppLuncher
             this.databaseStatusLabel.Size = new System.Drawing.Size(830, 17);
             this.databaseStatusLabel.Spring = true;
             this.databaseStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 24);
             // 
             // Form1
             // 
