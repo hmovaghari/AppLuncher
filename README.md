@@ -15,6 +15,20 @@
 
 ---
 
+## 📥 Downloads (v1.0 - Stable)
+
+Get the latest stable version of **AppLuncher** below:
+
+| Version | Type | Download Link |
+| :--- | :--- | :--- |
+| **v1.0** | 🛠️ **Installer (Setup)** | [Download `.exe` Setup](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.0/AppLuncher.1.0.Setup.exe) |
+| **v1.0** | 🚀 **Portable (ZIP)** | [Download `.zip` Portable](https://github.com/hmovaghari/AppLuncher/releases/download/w.1.0/AppLuncher.1.0.zip) |
+
+> [!TIP]
+> Use the **Installer** for a permanent installation on your system, or the **Portable** version if you want to run it directly from a USB drive without installation.
+
+---
+
 ## 💡 What is AppLuncher?
 
 **AppLuncher** is a Windows Forms application built with **C# and .NET Framework 4.8**. It is designed to replace messy desktop shortcuts with a clean, organized, and lightning-fast command hub. Whether you are a power user, developer, or gamer, AppLuncher lets you access your favorite programs, tools, and scripts in milliseconds.
@@ -42,7 +56,7 @@
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (For Developers)
 
 ### Prerequisites
 
@@ -53,6 +67,6 @@
 
 1. **Clone the Repository:**
 ```bash
-   git clone https://github.com/YOUR_USERNAME/AppLuncher.git
+   git clone https://github.com/hmovaghari/AppLuncher.git
    cd AppLuncher
    
