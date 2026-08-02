@@ -123,9 +123,9 @@ namespace AppLuncher
             this.treeNewLauncherMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.treeRenameMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeDeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeCopyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treePasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeDeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsListView = new System.Windows.Forms.ListView();
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.typeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -137,9 +137,9 @@ namespace AppLuncher
             this.newLauncherMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediumImageList = new System.Windows.Forms.ImageList(this.components);
             this.smallImageList = new System.Windows.Forms.ImageList(this.components);
             this.largeImageList = new System.Windows.Forms.ImageList(this.components);
@@ -454,6 +454,7 @@ namespace AppLuncher
             // mainSplitContainer
             // 
             this.mainSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.mainSplitContainer.Location = new System.Drawing.Point(0, 32);
             this.mainSplitContainer.Name = "mainSplitContainer";
             // 
@@ -465,7 +466,7 @@ namespace AppLuncher
             // 
             this.mainSplitContainer.Panel2.Controls.Add(this.contentsListView);
             this.mainSplitContainer.Size = new System.Drawing.Size(917, 362);
-            this.mainSplitContainer.SplitterDistance = 228;
+            this.mainSplitContainer.SplitterDistance = 214;
             this.mainSplitContainer.TabIndex = 1;
             // 
             // groupsTreeView
@@ -475,7 +476,7 @@ namespace AppLuncher
             this.groupsTreeView.HideSelection = false;
             this.groupsTreeView.Location = new System.Drawing.Point(0, 0);
             this.groupsTreeView.Name = "groupsTreeView";
-            this.groupsTreeView.Size = new System.Drawing.Size(228, 362);
+            this.groupsTreeView.Size = new System.Drawing.Size(214, 362);
             this.groupsTreeView.TabIndex = 0;
             this.groupsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.GroupsTreeView_AfterSelect);
             this.groupsTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.GroupsTreeView_NodeMouseClick);
@@ -492,47 +493,40 @@ namespace AppLuncher
             this.treePasteMenuItem,
             this.treeDeleteMenuItem});
             this.treeContextMenu.Name = "treeContextMenu";
-            this.treeContextMenu.Size = new System.Drawing.Size(181, 164);
+            this.treeContextMenu.Size = new System.Drawing.Size(157, 142);
             this.treeContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.TreeContextMenu_Opening);
             // 
             // treeNewGroupMenuItem
             // 
             this.treeNewGroupMenuItem.Name = "treeNewGroupMenuItem";
-            this.treeNewGroupMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeNewGroupMenuItem.Size = new System.Drawing.Size(156, 22);
             this.treeNewGroupMenuItem.Text = "New group...";
             this.treeNewGroupMenuItem.Click += new System.EventHandler(this.NewGroup_Click);
             // 
             // treeNewLauncherMenuItem
             // 
             this.treeNewLauncherMenuItem.Name = "treeNewLauncherMenuItem";
-            this.treeNewLauncherMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeNewLauncherMenuItem.Size = new System.Drawing.Size(156, 22);
             this.treeNewLauncherMenuItem.Text = "New launcher...";
             this.treeNewLauncherMenuItem.Click += new System.EventHandler(this.NewLauncher_Click);
             // 
             // treeSeparator
             // 
             this.treeSeparator.Name = "treeSeparator";
-            this.treeSeparator.Size = new System.Drawing.Size(177, 6);
+            this.treeSeparator.Size = new System.Drawing.Size(153, 6);
             // 
             // treeRenameMenuItem
             // 
             this.treeRenameMenuItem.Name = "treeRenameMenuItem";
-            this.treeRenameMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeRenameMenuItem.Size = new System.Drawing.Size(156, 22);
             this.treeRenameMenuItem.Text = "Rename...";
             this.treeRenameMenuItem.Click += new System.EventHandler(this.EditTreeGroup_Click);
-            // 
-            // treeDeleteMenuItem
-            // 
-            this.treeDeleteMenuItem.Name = "treeDeleteMenuItem";
-            this.treeDeleteMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.treeDeleteMenuItem.Text = "Delete";
-            this.treeDeleteMenuItem.Click += new System.EventHandler(this.DeleteTreeGroup_Click);
             // 
             // treeCopyMenuItem
             // 
             this.treeCopyMenuItem.Name = "treeCopyMenuItem";
             this.treeCopyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.treeCopyMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treeCopyMenuItem.Size = new System.Drawing.Size(156, 22);
             this.treeCopyMenuItem.Text = "Copy";
             this.treeCopyMenuItem.Click += new System.EventHandler(this.CopyTreeGroup_Click);
             // 
@@ -540,9 +534,16 @@ namespace AppLuncher
             // 
             this.treePasteMenuItem.Name = "treePasteMenuItem";
             this.treePasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.treePasteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.treePasteMenuItem.Size = new System.Drawing.Size(156, 22);
             this.treePasteMenuItem.Text = "Paste";
             this.treePasteMenuItem.Click += new System.EventHandler(this.Paste_Click);
+            // 
+            // treeDeleteMenuItem
+            // 
+            this.treeDeleteMenuItem.Name = "treeDeleteMenuItem";
+            this.treeDeleteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.treeDeleteMenuItem.Text = "Delete";
+            this.treeDeleteMenuItem.Click += new System.EventHandler(this.DeleteTreeGroup_Click);
             // 
             // contentsListView
             // 
@@ -560,7 +561,7 @@ namespace AppLuncher
             this.contentsListView.MultiSelect = false;
             this.contentsListView.Name = "contentsListView";
             this.contentsListView.ShowItemToolTips = true;
-            this.contentsListView.Size = new System.Drawing.Size(685, 362);
+            this.contentsListView.Size = new System.Drawing.Size(699, 362);
             this.contentsListView.SmallImageList = this.smallImageList;
             this.contentsListView.TabIndex = 0;
             this.contentsListView.UseCompatibleStateImageBehavior = false;
@@ -635,13 +636,6 @@ namespace AppLuncher
             this.editMenuItem.Text = "Edit...";
             this.editMenuItem.Click += new System.EventHandler(this.Edit_Click);
             // 
-            // deleteMenuItem
-            // 
-            this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.deleteMenuItem.Text = "Delete";
-            this.deleteMenuItem.Click += new System.EventHandler(this.Delete_Click);
-            // 
             // copyMenuItem
             // 
             this.copyMenuItem.Name = "copyMenuItem";
@@ -657,6 +651,13 @@ namespace AppLuncher
             this.pasteMenuItem.Size = new System.Drawing.Size(156, 22);
             this.pasteMenuItem.Text = "Paste";
             this.pasteMenuItem.Click += new System.EventHandler(this.Paste_Click);
+            // 
+            // deleteMenuItem
+            // 
+            this.deleteMenuItem.Name = "deleteMenuItem";
+            this.deleteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.deleteMenuItem.Text = "Delete";
+            this.deleteMenuItem.Click += new System.EventHandler(this.Delete_Click);
             // 
             // mediumImageList
             // 

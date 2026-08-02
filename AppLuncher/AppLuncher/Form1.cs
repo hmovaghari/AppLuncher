@@ -72,6 +72,7 @@ namespace AppLuncher
             }
 
             initialized = true;
+            BeginInvoke(new MethodInvoker(RestoreMainSplitterDistance));
             if (!InitializeDatabase(Properties.Settings.Default.JsonDatabasePath))
             {
                 Close();
@@ -1114,15 +1115,22 @@ namespace AppLuncher
                 WindowState = FormWindowState.Maximized;
             }
 
-            int splitterDistance = settings.MainSplitterDistance;
-            if (splitterDistance >= mainSplitContainer.Panel1MinSize &&
-                splitterDistance <= mainSplitContainer.Width - mainSplitContainer.Panel2MinSize)
-            {
-                mainSplitContainer.SplitterDistance = splitterDistance;
-            }
-
             checkForUpdatesAtStartupMenuItem.Checked = settings.CheckForUpdatesAtStartup;
             restoringUserInterfaceSettings = false;
+        }
+
+        private void RestoreMainSplitterDistance()
+        {
+            int minimumDistance = mainSplitContainer.Panel1MinSize;
+            int maximumDistance = Math.Max(
+                minimumDistance,
+                mainSplitContainer.ClientSize.Width -
+                mainSplitContainer.SplitterWidth -
+                mainSplitContainer.Panel2MinSize);
+
+            mainSplitContainer.SplitterDistance = Math.Max(
+                minimumDistance,
+                Math.Min(Properties.Settings.Default.MainSplitterDistance, maximumDistance));
         }
 
         private void SaveUserInterfaceSettings()
