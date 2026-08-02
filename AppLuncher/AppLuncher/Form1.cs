@@ -234,7 +234,7 @@ namespace AppLuncher
             foreach (LauncherGroup group in groups.OrderBy(value => value.Name))
             {
                 string key = "group-" + group.Id.ToString("N");
-                AddImages(key, null, true);
+                AddImages(key, null, 0, true);
                 ListViewItem row = new ListViewItem(group.Name)
                 {
                     ImageKey = key,
@@ -252,7 +252,7 @@ namespace AppLuncher
                 foreach (LauncherItem item in selectedGroup.Items.OrderBy(value => value.Name))
                 {
                     string key = "launcher-" + item.Id.ToString("N");
-                    AddImages(key, item.IconPath, false);
+                    AddImages(key, item.IconPath, item.IconIndex, false);
                     ListViewItem row = new ListViewItem(item.Name)
                     {
                         ImageKey = key,
@@ -288,7 +288,7 @@ namespace AppLuncher
             if (ContainsSearchText(group.Name, searchText))
             {
                 string key = "group-" + group.Id.ToString("N");
-                AddImages(key, null, true);
+                AddImages(key, null, 0, true);
                 ListViewItem row = new ListViewItem(group.Name)
                 {
                     ImageKey = key,
@@ -309,7 +309,7 @@ namespace AppLuncher
                 }
 
                 string key = "launcher-" + item.Id.ToString("N");
-                AddImages(key, item.IconPath, false);
+                AddImages(key, item.IconPath, item.IconIndex, false);
                 ListViewItem row = new ListViewItem(item.Name)
                 {
                     ImageKey = key,
@@ -383,11 +383,11 @@ namespace AppLuncher
             return false;
         }
 
-        private void AddImages(string key, string iconPath, bool folder)
+        private void AddImages(string key, string iconPath, int iconIndex, bool folder)
         {
-            IconLoader.AddImage(largeImageList, key, iconPath, folder);
-            IconLoader.AddImage(mediumImageList, key, iconPath, folder);
-            IconLoader.AddImage(smallImageList, key, iconPath, folder);
+            IconLoader.AddImage(largeImageList, key, iconPath, iconIndex, folder);
+            IconLoader.AddImage(mediumImageList, key, iconPath, iconIndex, folder);
+            IconLoader.AddImage(smallImageList, key, iconPath, iconIndex, folder);
         }
 
         private string BuildLocationText()

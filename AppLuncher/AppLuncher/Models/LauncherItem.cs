@@ -18,6 +18,8 @@ namespace AppLuncher.Models
 
         public string IconPath { get; set; }
 
+        public int IconIndex { get; set; }
+
         public List<LaunchAction> Actions { get; set; }
     }
 }

@@ -8,13 +8,13 @@ namespace AppLuncher.Helpers
 {
     public static class IconLoader
     {
-        public static Bitmap LoadBitmap(string iconPath, int size, bool folder)
+        public static Bitmap LoadBitmap(string iconPath, int iconIndex, int size, bool folder)
         {
             if (!string.IsNullOrWhiteSpace(iconPath) && File.Exists(iconPath))
             {
                 try
                 {
-                    using (Icon source = LoadIcon(iconPath, size))
+                    using (Icon source = LoadIcon(iconPath, iconIndex, size))
                     using (Icon resized = new Icon(source, new Size(size, size)))
                     {
                         return resized.ToBitmap();
@@ -36,12 +36,22 @@ namespace AppLuncher.Helpers
             }
         }
 
-        public static void AddImage(ImageList imageList, string key, string iconPath, bool folder)
+        public static void AddImage(ImageList imageList, string key, string iconPath, int iconIndex, bool folder)
         {
-            imageList.Images.Add(key, LoadBitmap(iconPath, imageList.ImageSize.Width, folder));
+            imageList.Images.Add(key, LoadBitmap(iconPath, iconIndex, imageList.ImageSize.Width, folder));
         }
 
-        private static Icon LoadIcon(string path, int size)
+        public static int GetEmbeddedIconCount(string path)
+        {
+            if (!File.Exists(path) || !IsExecutableIconSource(path))
+            {
+                return 0;
+            }
+
+            return unchecked((int)ExtractIconEx(path, -1, null, null, 0));
+        }
+
+        private static Icon LoadIcon(string path, int iconIndex, int size)
         {
             string extension = Path.GetExtension(path);
             if (string.Equals(extension, ".ico", StringComparison.OrdinalIgnoreCase))
@@ -49,21 +59,11 @@ namespace AppLuncher.Helpers
                 return new Icon(path, new Size(size, size));
             }
 
-            if (string.Equals(extension, ".exe", StringComparison.OrdinalIgnoreCase))
-            {
-                Icon associatedIcon = Icon.ExtractAssociatedIcon(path);
-                if (associatedIcon != null)
-                {
-                    return associatedIcon;
-                }
-            }
-
-            if (string.Equals(extension, ".exe", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(extension, ".dll", StringComparison.OrdinalIgnoreCase))
+            if (IsExecutableIconSource(path))
             {
                 IntPtr[] largeIcons = new IntPtr[1];
                 IntPtr[] smallIcons = new IntPtr[1];
-                uint extractedCount = ExtractIconEx(path, 0, largeIcons, smallIcons, 1);
+                uint extractedCount = ExtractIconEx(path, Math.Max(0, iconIndex), largeIcons, smallIcons, 1);
                 IntPtr selectedHandle = size <= 24 ? smallIcons[0] : largeIcons[0];
                 IntPtr unusedHandle = size <= 24 ? largeIcons[0] : smallIcons[0];
 
@@ -89,6 +89,13 @@ namespace AppLuncher.Helpers
             }
 
             throw new ArgumentException("The selected file does not contain a readable icon.", "path");
+        }
+
+        private static bool IsExecutableIconSource(string path)
+        {
+            string extension = Path.GetExtension(path);
+            return string.Equals(extension, ".exe", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(extension, ".dll", StringComparison.OrdinalIgnoreCase);
         }
 
         private static Icon LoadFolderIcon(int size)

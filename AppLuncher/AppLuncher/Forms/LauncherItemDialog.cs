@@ -14,8 +14,12 @@ namespace AppLuncher.Forms
         private readonly TextBox nameTextBox;
         private readonly TextBox iconPathTextBox;
         private readonly PictureBox iconPreview;
+        private readonly Label embeddedIconsLabel;
+        private readonly ListView embeddedIconsListView;
+        private readonly ImageList embeddedIconsImageList;
         private readonly ListView actionsListView;
         private readonly List<LaunchAction> actions;
+        private int selectedIconIndex;
 
         public LauncherItemDialog(LauncherItem item)
         {
@@ -24,9 +28,10 @@ namespace AppLuncher.Forms
 
             Text = item == null ? "Create Launcher" : "Edit Launcher";
             StartPosition = FormStartPosition.CenterParent;
-            MinimumSize = new Size(760, 520);
-            Size = new Size(850, 590);
+            MinimumSize = new Size(760, 740);
+            Size = new Size(850, 740);
             ShowInTaskbar = false;
+            selectedIconIndex = Math.Max(0, source.IconIndex);
 
             Label nameLabel = new Label { AutoSize = true, Location = new Point(16, 20), Text = "Name:" };
             nameTextBox = new TextBox
@@ -45,7 +50,7 @@ namespace AppLuncher.Forms
                 Size = new Size(545, 23),
                 Text = source.IconPath ?? string.Empty
             };
-            iconPathTextBox.TextChanged += delegate { RefreshIconPreview(); };
+            iconPathTextBox.TextChanged += IconPathTextBox_TextChanged;
 
             Button browseIconButton = new Button
             {
@@ -65,11 +70,37 @@ namespace AppLuncher.Forms
                 SizeMode = PictureBoxSizeMode.CenterImage
             };
 
+            embeddedIconsLabel = new Label
+            {
+                AutoSize = true,
+                Location = new Point(16, 96),
+                Text = "Embedded icons:"
+            };
+
+            embeddedIconsImageList = new ImageList
+            {
+                ColorDepth = ColorDepth.Depth32Bit,
+                ImageSize = new Size(48, 48)
+            };
+
+            embeddedIconsListView = new ListView
+            {
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                FullRowSelect = true,
+                HideSelection = false,
+                LargeImageList = embeddedIconsImageList,
+                Location = new Point(95, 92),
+                MultiSelect = false,
+                Size = new Size(710, 76),
+                View = View.LargeIcon
+            };
+            embeddedIconsListView.SelectedIndexChanged += EmbeddedIconsListView_SelectedIndexChanged;
+
             GroupBox actionsGroup = new GroupBox
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                Location = new Point(14, 92),
-                Size = new Size(791, 405),
+                Location = new Point(14, 180),
+                Size = new Size(791, 465),
                 Text = "Executable actions (run in order)"
             };
 
@@ -81,7 +112,7 @@ namespace AppLuncher.Forms
                 HideSelection = false,
                 Location = new Point(12, 25),
                 MultiSelect = false,
-                Size = new Size(650, 364),
+                Size = new Size(650, 424),
                 View = View.Details
             };
             actionsListView.Columns.Add("#", 42);
@@ -109,7 +140,7 @@ namespace AppLuncher.Forms
             {
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
                 DialogResult = DialogResult.OK,
-                Location = new Point(649, 510),
+                Location = new Point(649, 658),
                 Size = new Size(75, 29),
                 Text = "OK"
             };
@@ -119,7 +150,7 @@ namespace AppLuncher.Forms
             {
                 Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
                 DialogResult = DialogResult.Cancel,
-                Location = new Point(730, 510),
+                Location = new Point(730, 658),
                 Size = new Size(75, 29),
                 Text = "Cancel"
             };
@@ -130,6 +161,8 @@ namespace AppLuncher.Forms
             Controls.Add(iconPathTextBox);
             Controls.Add(browseIconButton);
             Controls.Add(iconPreview);
+            Controls.Add(embeddedIconsLabel);
+            Controls.Add(embeddedIconsListView);
             Controls.Add(actionsGroup);
             Controls.Add(okButton);
             Controls.Add(cancelButton);
@@ -137,6 +170,7 @@ namespace AppLuncher.Forms
             CancelButton = cancelButton;
 
             RefreshActions();
+            RefreshEmbeddedIcons();
             RefreshIconPreview();
             LocalizationManager.Apply(this);
             ThemeManager.Apply(this, Properties.Settings.Default.UseDarkTheme);
@@ -149,6 +183,7 @@ namespace AppLuncher.Forms
                 Id = id == Guid.Empty ? Guid.NewGuid() : id,
                 Name = nameTextBox.Text.Trim(),
                 IconPath = iconPathTextBox.Text.Trim(),
+                IconIndex = selectedIconIndex,
                 Actions = actions.OrderBy(action => action.Order).ToList()
             };
         }
@@ -158,6 +193,11 @@ namespace AppLuncher.Forms
             if (disposing && iconPreview != null && iconPreview.Image != null)
             {
                 iconPreview.Image.Dispose();
+            }
+
+            if (disposing && embeddedIconsImageList != null)
+            {
+                embeddedIconsImageList.Dispose();
             }
 
             base.Dispose(disposing);
@@ -190,7 +230,10 @@ namespace AppLuncher.Forms
 
                 if (dialog.ShowDialog(this) == DialogResult.OK)
                 {
+                    selectedIconIndex = 0;
                     iconPathTextBox.Text = dialog.FileName;
+                    RefreshEmbeddedIcons();
+                    RefreshIconPreview();
                 }
             }
         }
@@ -328,7 +371,83 @@ namespace AppLuncher.Forms
                 iconPreview.Image.Dispose();
             }
 
-            iconPreview.Image = IconLoader.LoadBitmap(iconPathTextBox.Text.Trim(), 48, false);
+            iconPreview.Image = IconLoader.LoadBitmap(
+                iconPathTextBox.Text.Trim(), selectedIconIndex, 48, false);
+        }
+
+        private void IconPathTextBox_TextChanged(object sender, EventArgs e)
+        {
+            selectedIconIndex = 0;
+            RefreshEmbeddedIcons();
+            RefreshIconPreview();
+        }
+
+        private void RefreshEmbeddedIcons()
+        {
+            embeddedIconsListView.BeginUpdate();
+            embeddedIconsListView.Items.Clear();
+            embeddedIconsImageList.Images.Clear();
+
+            string iconPath = iconPathTextBox.Text.Trim();
+            int iconCount = 0;
+            try
+            {
+                iconCount = IconLoader.GetEmbeddedIconCount(iconPath);
+            }
+            catch (Exception)
+            {
+                iconCount = 0;
+            }
+
+            bool showEmbeddedIcons = iconCount > 0;
+            embeddedIconsLabel.Visible = showEmbeddedIcons;
+            embeddedIconsListView.Visible = showEmbeddedIcons;
+
+            if (!showEmbeddedIcons)
+            {
+                selectedIconIndex = 0;
+                embeddedIconsListView.EndUpdate();
+                return;
+            }
+
+            selectedIconIndex = Math.Min(selectedIconIndex, iconCount - 1);
+            for (int iconIndex = 0; iconIndex < iconCount; iconIndex++)
+            {
+                string imageKey = "icon-" + iconIndex;
+                embeddedIconsImageList.Images.Add(
+                    imageKey,
+                    IconLoader.LoadBitmap(iconPath, iconIndex, embeddedIconsImageList.ImageSize.Width, false));
+
+                ListViewItem item = new ListViewItem("Icon " + iconIndex)
+                {
+                    ImageKey = imageKey,
+                    Tag = iconIndex
+                };
+                embeddedIconsListView.Items.Add(item);
+
+                if (iconIndex == selectedIconIndex)
+                {
+                    item.Selected = true;
+                    item.Focused = true;
+                }
+            }
+
+            embeddedIconsListView.EndUpdate();
+        }
+
+        private void EmbeddedIconsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (embeddedIconsListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            int iconIndex = (int)embeddedIconsListView.SelectedItems[0].Tag;
+            if (selectedIconIndex != iconIndex)
+            {
+                selectedIconIndex = iconIndex;
+                RefreshIconPreview();
+            }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
