@@ -13,6 +13,7 @@ namespace AppLuncher.Forms
     {
         private readonly TextBox nameTextBox;
         private readonly TextBox iconPathTextBox;
+        private readonly CheckBox runAsAdministratorCheckBox;
         private readonly PictureBox iconPreview;
         private readonly Label embeddedIconsLabel;
         private readonly ListView embeddedIconsListView;
@@ -99,8 +100,8 @@ namespace AppLuncher.Forms
             GroupBox actionsGroup = new GroupBox
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                Location = new Point(14, 180),
-                Size = new Size(791, 465),
+                Location = new Point(14, 210),
+                Size = new Size(791, 435),
                 Text = "Executable actions (run in order)"
             };
 
@@ -112,7 +113,7 @@ namespace AppLuncher.Forms
                 HideSelection = false,
                 Location = new Point(12, 25),
                 MultiSelect = false,
-                Size = new Size(650, 424),
+                Size = new Size(650, 394),
                 View = View.Details
             };
             actionsListView.Columns.Add("#", 42);
@@ -128,6 +129,14 @@ namespace AppLuncher.Forms
             Button deleteActionButton = CreateActionButton("Delete", 92, DeleteActionButton_Click);
             Button moveUpButton = CreateActionButton("Move Up", 145, MoveUpButton_Click);
             Button moveDownButton = CreateActionButton("Move Down", 180, MoveDownButton_Click);
+
+            runAsAdministratorCheckBox = new CheckBox
+            {
+                AutoSize = true,
+                Checked = source.RunAsAdministrator,
+                Location = new Point(95, 178),
+                Text = "Run this launcher as administrator by default"
+            };
 
             actionsGroup.Controls.Add(actionsListView);
             actionsGroup.Controls.Add(addActionButton);
@@ -163,6 +172,7 @@ namespace AppLuncher.Forms
             Controls.Add(iconPreview);
             Controls.Add(embeddedIconsLabel);
             Controls.Add(embeddedIconsListView);
+            Controls.Add(runAsAdministratorCheckBox);
             Controls.Add(actionsGroup);
             Controls.Add(okButton);
             Controls.Add(cancelButton);
@@ -184,6 +194,7 @@ namespace AppLuncher.Forms
                 Name = nameTextBox.Text.Trim(),
                 IconPath = iconPathTextBox.Text.Trim(),
                 IconIndex = selectedIconIndex,
+                RunAsAdministrator = runAsAdministratorCheckBox.Checked,
                 Actions = actions.OrderBy(action => action.Order).ToList()
             };
         }

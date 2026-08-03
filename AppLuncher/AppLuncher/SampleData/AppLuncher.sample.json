@@ -16,6 +16,7 @@
           "Id": "54a87fae-d22c-4c92-8240-fb858488d29c",
           "Name": "Open Project Tools",
           "IconPath": "C:\\Icons\\development.ico",
+          "RunAsAdministrator": false,
           "Actions": [
             {
               "Id": "101a4363-97af-40a2-a78e-f95bf614d1ce",

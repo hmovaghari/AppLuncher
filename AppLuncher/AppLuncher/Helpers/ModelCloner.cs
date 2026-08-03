@@ -16,6 +16,7 @@ namespace AppLuncher.Helpers
             destination.Name = source.Name;
             destination.IconPath = source.IconPath;
             destination.IconIndex = source.IconIndex;
+            destination.RunAsAdministrator = source.RunAsAdministrator;
             destination.Actions = source.Actions;
         }
 

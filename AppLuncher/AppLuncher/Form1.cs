@@ -19,7 +19,7 @@ namespace AppLuncher
     public partial class Form1 : Form
     {
         private const string ClipboardFormat = "AppLuncher.ClipboardPayload.v1";
-        private readonly decimal Version = 1.2M;
+        private readonly decimal Version = 1.3M;
         private readonly JsonDatabaseService databaseService = new JsonDatabaseService();
         private readonly LauncherExecutionService executionService = new LauncherExecutionService();
         private readonly UpdateService updateService = new UpdateService();
@@ -783,7 +783,12 @@ namespace AppLuncher
             await OpenSelectedContentAsync();
         }
 
-        private async Task OpenSelectedContentAsync()
+        private async void RunAsAdministratorMenuItem_Click(object sender, EventArgs e)
+        {
+            await OpenSelectedContentAsync(true);
+        }
+
+        private async Task OpenSelectedContentAsync(bool runAsAdministrator = false)
         {
             ContentEntry entry = SelectedContent;
             if (entry == null)
@@ -812,8 +817,13 @@ namespace AppLuncher
             try
             {
                 UseWaitCursor = true;
-                locationStatusLabel.Text = "Launching " + entry.Item.Name + "...";
-                await executionService.ExecuteAsync(entry.Item, shutdownTokenSource.Token);
+                bool shouldRunAsAdministrator = runAsAdministrator || entry.Item.RunAsAdministrator;
+                locationStatusLabel.Text = "Launching " + entry.Item.Name +
+                    (shouldRunAsAdministrator ? " as administrator..." : "...");
+                await executionService.ExecuteAsync(
+                    entry.Item,
+                    shouldRunAsAdministrator,
+                    shutdownTokenSource.Token);
                 locationStatusLabel.Text = "Launched " + entry.Item.Name;
             }
             catch (OperationCanceledException)
@@ -1235,7 +1245,10 @@ namespace AppLuncher
         private void ContentContextMenu_Opening(object sender, CancelEventArgs e)
         {
             bool hasSelection = SelectedContent != null;
+            bool hasLauncherSelection = hasSelection && SelectedContent.Item != null;
             openMenuItem.Enabled = hasSelection;
+            runAsAdministratorMenuItem.Visible = hasLauncherSelection;
+            runAsAdministratorMenuItem.Enabled = hasLauncherSelection;
             editMenuItem.Enabled = hasSelection;
             deleteMenuItem.Enabled = hasSelection;
             copyMenuItem.Enabled = hasSelection;

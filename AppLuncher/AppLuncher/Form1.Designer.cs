@@ -52,6 +52,7 @@ namespace AppLuncher
         private System.Windows.Forms.ImageList smallImageList;
         private System.Windows.Forms.ContextMenuStrip contentContextMenu;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runAsAdministratorMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newGroupMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newLauncherMenuItem;
         private System.Windows.Forms.ToolStripSeparator contextSeparator1;
@@ -133,6 +134,7 @@ namespace AppLuncher
             this.locationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runAsAdministratorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGroupMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLauncherMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -592,6 +594,7 @@ namespace AppLuncher
             // 
             this.contentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMenuItem,
+            this.runAsAdministratorMenuItem,
             this.newGroupMenuItem,
             this.newLauncherMenuItem,
             this.contextSeparator1,
@@ -600,7 +603,7 @@ namespace AppLuncher
             this.pasteMenuItem,
             this.deleteMenuItem});
             this.contentContextMenu.Name = "contentContextMenu";
-            this.contentContextMenu.Size = new System.Drawing.Size(157, 164);
+            this.contentContextMenu.Size = new System.Drawing.Size(196, 186);
             this.contentContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.ContentContextMenu_Opening);
             // 
             // openMenuItem
@@ -610,29 +613,36 @@ namespace AppLuncher
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
+            // runAsAdministratorMenuItem
+            // 
+            this.runAsAdministratorMenuItem.Name = "runAsAdministratorMenuItem";
+            this.runAsAdministratorMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.runAsAdministratorMenuItem.Text = "Run as administrator";
+            this.runAsAdministratorMenuItem.Click += new System.EventHandler(this.RunAsAdministratorMenuItem_Click);
+            // 
             // newGroupMenuItem
             // 
             this.newGroupMenuItem.Name = "newGroupMenuItem";
-            this.newGroupMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.newGroupMenuItem.Size = new System.Drawing.Size(195, 22);
             this.newGroupMenuItem.Text = "New group...";
             this.newGroupMenuItem.Click += new System.EventHandler(this.NewGroup_Click);
             // 
             // newLauncherMenuItem
             // 
             this.newLauncherMenuItem.Name = "newLauncherMenuItem";
-            this.newLauncherMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.newLauncherMenuItem.Size = new System.Drawing.Size(195, 22);
             this.newLauncherMenuItem.Text = "New launcher...";
             this.newLauncherMenuItem.Click += new System.EventHandler(this.NewLauncher_Click);
             // 
             // contextSeparator1
             // 
             this.contextSeparator1.Name = "contextSeparator1";
-            this.contextSeparator1.Size = new System.Drawing.Size(153, 6);
+            this.contextSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // editMenuItem
             // 
             this.editMenuItem.Name = "editMenuItem";
-            this.editMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.editMenuItem.Size = new System.Drawing.Size(195, 22);
             this.editMenuItem.Text = "Edit...";
             this.editMenuItem.Click += new System.EventHandler(this.Edit_Click);
             // 
@@ -640,7 +650,7 @@ namespace AppLuncher
             // 
             this.copyMenuItem.Name = "copyMenuItem";
             this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.copyMenuItem.Size = new System.Drawing.Size(195, 22);
             this.copyMenuItem.Text = "Copy";
             this.copyMenuItem.Click += new System.EventHandler(this.Copy_Click);
             // 
@@ -648,14 +658,14 @@ namespace AppLuncher
             // 
             this.pasteMenuItem.Name = "pasteMenuItem";
             this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.pasteMenuItem.Size = new System.Drawing.Size(195, 22);
             this.pasteMenuItem.Text = "Paste";
             this.pasteMenuItem.Click += new System.EventHandler(this.Paste_Click);
             // 
             // deleteMenuItem
             // 
             this.deleteMenuItem.Name = "deleteMenuItem";
-            this.deleteMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.deleteMenuItem.Size = new System.Drawing.Size(195, 22);
             this.deleteMenuItem.Text = "Delete";
             this.deleteMenuItem.Click += new System.EventHandler(this.Delete_Click);
             // 

@@ -20,6 +20,8 @@ namespace AppLuncher.Models
 
         public int IconIndex { get; set; }
 
+        public bool RunAsAdministrator { get; set; }
+
         public List<LaunchAction> Actions { get; set; }
     }
 }

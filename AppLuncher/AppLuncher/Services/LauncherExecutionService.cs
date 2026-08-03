@@ -10,7 +10,10 @@ namespace AppLuncher.Services
 {
     public sealed class LauncherExecutionService
     {
-        public async Task ExecuteAsync(LauncherItem item, CancellationToken cancellationToken)
+        public async Task ExecuteAsync(
+            LauncherItem item,
+            bool runAsAdministrator,
+            CancellationToken cancellationToken)
         {
             if (item == null)
             {
@@ -48,6 +51,11 @@ namespace AppLuncher.Services
                     WorkingDirectory = workingDirectory,
                     UseShellExecute = true
                 };
+
+                if (runAsAdministrator)
+                {
+                    startInfo.Verb = "runas";
+                }
 
                 Process process;
                 try
