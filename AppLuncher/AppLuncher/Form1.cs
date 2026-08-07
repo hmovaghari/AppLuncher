@@ -19,7 +19,7 @@ namespace AppLuncher
     public partial class Form1 : Form
     {
         private const string ClipboardFormat = "AppLuncher.ClipboardPayload.v1";
-        private readonly decimal Version = 1.3M;
+        private readonly decimal Version = 1.4M;
         private readonly JsonDatabaseService databaseService = new JsonDatabaseService();
         private readonly LauncherExecutionService executionService = new LauncherExecutionService();
         private readonly UpdateService updateService = new UpdateService();
