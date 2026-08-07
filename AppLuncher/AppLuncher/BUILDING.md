@@ -15,4 +15,4 @@ On first run, choose an existing `.json` file or enter a new file name. AppLunch
 
 Every successful save writes formatted JSON and keeps the previous version beside it as `<database>.bak`.
 
-Launcher icons can be loaded from `.ico`, `.exe`, or `.dll` files. The selected source file path is stored in JSON.
+Launcher icons can be loaded from `.ico`, `.png`, `.webp`, `.exe`, or `.dll` files. The selected source file path is stored in JSON.

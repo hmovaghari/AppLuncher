@@ -232,7 +232,8 @@ namespace AppLuncher.Forms
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
                 dialog.Filter =
-                    "Supported icon sources (*.ico;*.exe;*.dll)|*.ico;*.exe;*.dll|" +
+                    "Supported icon sources (*.ico;*.png;*.webp;*.exe;*.dll)|*.ico;*.png;*.webp;*.exe;*.dll|" +
+                    "Image files (*.png;*.webp)|*.png;*.webp|" +
                     "Icon files (*.ico)|*.ico|" +
                     "Executable files (*.exe)|*.exe|" +
                     "Library files (*.dll)|*.dll";
@@ -472,16 +473,13 @@ namespace AppLuncher.Forms
             }
 
             string iconPath = iconPathTextBox.Text.Trim();
-            string iconExtension = Path.GetExtension(iconPath);
-            bool supportedIconSource =
-                string.Equals(iconExtension, ".ico", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(iconExtension, ".exe", StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(iconExtension, ".dll", StringComparison.OrdinalIgnoreCase);
 
             if (!string.IsNullOrWhiteSpace(iconPath) &&
-                (!File.Exists(iconPath) || !supportedIconSource))
+                (!File.Exists(iconPath) || !IconLoader.IsSupportedIconSource(iconPath)))
             {
-                MessageBox.Show(this, "The icon source must be an existing .ico, .exe, or .dll file.", "AppLuncher",
+                MessageBox.Show(this,
+                    "The icon source must be an existing .ico, .png, .webp, .exe, or .dll file.",
+                    "AppLuncher",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.None;
                 return;
