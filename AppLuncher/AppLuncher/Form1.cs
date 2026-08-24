@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -788,6 +789,113 @@ namespace AppLuncher
             await OpenSelectedContentAsync(true);
         }
 
+        private void PropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            ContentEntry entry = SelectedContent;
+            if (entry == null || entry.Item == null || entry.Item.Actions == null ||
+                entry.Item.Actions.Count == 0)
+            {
+                return;
+            }
+
+            List<LaunchAction> actions = entry.Item.Actions
+                .OrderBy(value => value.Order)
+                .ToList();
+
+            if (actions.Count > 1)
+            {
+                return;
+            }
+
+            OpenExecutableProperties(actions[0].ProgramPath);
+        }
+
+        private void OpenExecutablePropertiesMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem != null)
+            {
+                OpenExecutableProperties(menuItem.Tag as string);
+            }
+        }
+
+        private void OpenExecutableProperties(string configuredProgramPath)
+        {
+            string programPath = Environment.ExpandEnvironmentVariables(configuredProgramPath ?? string.Empty);
+
+            if (string.IsNullOrWhiteSpace(programPath) || !File.Exists(programPath))
+            {
+                MessageBox.Show(this, "The executable file for this launcher was not found.",
+                    "AppLuncher", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                Type shellApplicationType = Type.GetTypeFromProgID("Shell.Application");
+                if (shellApplicationType == null)
+                {
+                    throw new InvalidOperationException("Windows Shell is not available.");
+                }
+
+                object shellApplication = Activator.CreateInstance(shellApplicationType);
+                object folder = null;
+                object file = null;
+                try
+                {
+                    folder = shellApplicationType.InvokeMember(
+                        "NameSpace",
+                        System.Reflection.BindingFlags.InvokeMethod,
+                        null,
+                        shellApplication,
+                        new object[] { Path.GetDirectoryName(programPath) });
+                    if (folder == null)
+                    {
+                        throw new InvalidOperationException("The executable folder could not be opened.");
+                    }
+
+                    Type folderType = folder.GetType();
+                    file = folderType.InvokeMember(
+                        "ParseName",
+                        System.Reflection.BindingFlags.InvokeMethod,
+                        null,
+                        folder,
+                        new object[] { Path.GetFileName(programPath) });
+                    if (file == null)
+                    {
+                        throw new InvalidOperationException("The executable could not be opened by Windows Shell.");
+                    }
+
+                    file.GetType().InvokeMember(
+                        "InvokeVerb",
+                        System.Reflection.BindingFlags.InvokeMethod,
+                        null,
+                        file,
+                        new object[] { "properties" });
+                }
+                finally
+                {
+                    ReleaseComObject(file);
+                    ReleaseComObject(folder);
+                    ReleaseComObject(shellApplication);
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this,
+                    "The executable properties could not be opened.\r\n\r\n" + exception.Message,
+                    "AppLuncher", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static void ReleaseComObject(object value)
+        {
+            if (value != null && Marshal.IsComObject(value))
+            {
+                Marshal.FinalReleaseComObject(value);
+            }
+        }
+
         private async Task OpenSelectedContentAsync(bool runAsAdministrator = false)
         {
             ContentEntry entry = SelectedContent;
@@ -1249,6 +1357,27 @@ namespace AppLuncher
             openMenuItem.Enabled = hasSelection;
             runAsAdministratorMenuItem.Visible = hasLauncherSelection;
             runAsAdministratorMenuItem.Enabled = hasLauncherSelection;
+            propertiesMenuItem.Visible = hasLauncherSelection;
+            propertiesMenuItem.Enabled = hasLauncherSelection;
+            propertiesMenuItem.DropDownItems.Clear();
+            if (hasLauncherSelection && SelectedContent.Item.Actions != null &&
+                SelectedContent.Item.Actions.Count > 1)
+            {
+                foreach (LaunchAction action in SelectedContent.Item.Actions.OrderBy(value => value.Order))
+                {
+                    string programPath = Environment.ExpandEnvironmentVariables(action.ProgramPath ?? string.Empty);
+                    string displayName = string.IsNullOrWhiteSpace(programPath)
+                        ? string.Format("{0}. {1}", action.Order, "Missing executable")
+                        : string.Format("{0}. {1}", action.Order, Path.GetFileName(programPath));
+                    ToolStripMenuItem actionPropertiesMenuItem = new ToolStripMenuItem(displayName)
+                    {
+                        Tag = action.ProgramPath,
+                        Enabled = !string.IsNullOrWhiteSpace(programPath) && File.Exists(programPath)
+                    };
+                    actionPropertiesMenuItem.Click += OpenExecutablePropertiesMenuItem_Click;
+                    propertiesMenuItem.DropDownItems.Add(actionPropertiesMenuItem);
+                }
+            }
             editMenuItem.Enabled = hasSelection;
             deleteMenuItem.Enabled = hasSelection;
             copyMenuItem.Enabled = hasSelection;

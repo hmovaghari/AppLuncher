@@ -33,6 +33,7 @@ namespace AppLuncher.Helpers
                 { "List", "فهرست" },
                 { "Details", "جزئیات" },
                 { "Open", "باز کردن" },
+                { "Properties", "ویژگی‌ها" },
                 { "New group...", "گروه جدید..." },
                 { "New launcher...", "لانچر جدید..." },
                 { "Rename...", "تغییر نام..." },

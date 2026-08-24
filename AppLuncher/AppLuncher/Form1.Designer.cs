@@ -53,6 +53,7 @@ namespace AppLuncher
         private System.Windows.Forms.ContextMenuStrip contentContextMenu;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
         private System.Windows.Forms.ToolStripMenuItem runAsAdministratorMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newGroupMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newLauncherMenuItem;
         private System.Windows.Forms.ToolStripSeparator contextSeparator1;
@@ -135,6 +136,7 @@ namespace AppLuncher
             this.contentContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runAsAdministratorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGroupMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLauncherMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -595,6 +597,7 @@ namespace AppLuncher
             this.contentContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMenuItem,
             this.runAsAdministratorMenuItem,
+            this.propertiesMenuItem,
             this.newGroupMenuItem,
             this.newLauncherMenuItem,
             this.contextSeparator1,
@@ -619,6 +622,13 @@ namespace AppLuncher
             this.runAsAdministratorMenuItem.Size = new System.Drawing.Size(195, 22);
             this.runAsAdministratorMenuItem.Text = "Run as administrator";
             this.runAsAdministratorMenuItem.Click += new System.EventHandler(this.RunAsAdministratorMenuItem_Click);
+            //
+            // propertiesMenuItem
+            //
+            this.propertiesMenuItem.Name = "propertiesMenuItem";
+            this.propertiesMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.propertiesMenuItem.Text = "Properties";
+            this.propertiesMenuItem.Click += new System.EventHandler(this.PropertiesMenuItem_Click);
             // 
             // newGroupMenuItem
             // 
