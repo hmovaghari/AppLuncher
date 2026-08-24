@@ -66,11 +66,9 @@ Get the latest stable version of **AppLuncher** below:
 
 ## 📸 Screenshots / اسکرین‌شات‌ها
 
-*(Add your screenshots here) / تصویرهای محیط برنامه را اینجا قرار دهید*
-
-| Main Interface / رابط اصلی | Settings / Management / تنظیمات و مدیریت |
+| English dark theme / نمای تیرهٔ انگلیسی | Persian light theme / نمای روشنٔ فارسی |
 | :---: | :---: |
-| `![Main UI](https://via.placeholder.com/400x250?text=AppLuncher+Main+UI)` | `![Settings](https://via.placeholder.com/400x250?text=Settings+Window)` |
+| ![AppLuncher dark English interface](https://hmovaghari.ir/root/AppLuncher/AppLuncherDarkEn.png) | ![AppLuncher light Persian interface](https://hmovaghari.ir/root/AppLuncher/AppLuncherLightFa.png) |
 
 ---
 
