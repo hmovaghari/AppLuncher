@@ -76,10 +76,15 @@ Get the latest stable version of **AppLuncher** below:
 
 ## 🚀 Getting Started (For Developers) / شروع کار (برای توسعه‌دهندگان)
 
-### Prerequisites / پیش‌نیازها
+### Prerequisites
 
-- **OS / سیستم‌عامل:** ویندوز ۷ با بستهٔ خدماتی ۱، ویندوز ۸٫۱، ویندوز ۱۰ یا ویندوز ۱۱
-- **Runtime / محیط اجرا:** چارچوب دات‌نت نسخهٔ ۴٫۸
+- **Operating system:** Windows 7 SP1, Windows 8.1, Windows 10, or Windows 11
+- **Runtime:** .NET Framework 4.8
+
+### پیش‌نیازها
+
+- **سیستم‌عامل:** ویندوز ۷ با بستهٔ خدماتی ۱، ویندوز ۸٫۱، ویندوز ۱۰ یا ویندوز ۱۱
+- **محیط اجرا:** چارچوب دات‌نت نسخهٔ ۴٫۸
 
 ### Installation & Run / نصب و اجرا
 
