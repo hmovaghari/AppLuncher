@@ -68,7 +68,7 @@ Get the latest stable version of **AppLuncher** below:
 
 | English dark theme / نمای تیرهٔ انگلیسی | Persian light theme / نمای روشنٔ فارسی |
 | :---: | :---: |
-| ![AppLuncher dark English interface](https://hmovaghari.ir/root/AppLuncher/AppLuncherDarkEn.png) | ![AppLuncher light Persian interface](https://hmovaghari.ir/root/AppLuncher/AppLuncherLightFa.png) |
+| ![AppLuncher dark English interface](docs/screenshots/AppLuncherDarkEn.png) | ![AppLuncher light Persian interface](docs/screenshots/AppLuncherLightFa.png) |
 
 ---
 
