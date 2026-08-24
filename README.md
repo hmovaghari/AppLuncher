@@ -87,3 +87,18 @@ Get the latest stable version of **AppLuncher** below:
 ```bash
    git clone https://github.com/hmovaghari/AppLuncher.git
    cd AppLuncher
+```
+
+---
+
+## 🔐 Code Signing Policy / سیاست امضای کد
+
+Free code signing provided by SignPath.io, certificate by SignPath Foundation.
+
+امضای رایگان کد توسط SignPath.io ارائه می‌شود و گواهی امضا متعلق به SignPath Foundation است.
+
+### Privacy Policy / سیاست حریم خصوصی
+
+AppLuncher does not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
+
+AppLuncher هیچ اطلاعاتی را به سیستم‌های دیگر در شبکه ارسال نمی‌کند، مگر اینکه این کار به‌طور مشخص توسط کاربر یا شخصی که برنامه را نصب یا اجرا می‌کند درخواست شده باشد.
