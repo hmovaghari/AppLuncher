@@ -3,7 +3,7 @@
 # 🚀 AppLuncher
 
 **A lightweight, blazing-fast, and customizable application launcher for Windows.**
-**یک لانچر برنامه سبک، بسیار سریع و قابل شخصی‌سازی برای ویندوز.**
+**یک راه‌انداز برنامهٔ سبک، بسیار سریع و قابل شخصی‌سازی برای ویندوز.**
 
 ![C#](https://img.shields.io/badge/Language-C%23-blue?style=for-the-badge&logo=csharp)
 ![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8-512BD4?style=for-the-badge&logo=dotnet)
@@ -19,7 +19,7 @@
 ## 📥 Downloads (v1.5 - Stable) / دانلودها (نسخه پایدار ۱.۵)
 
 Get the latest stable version of **AppLuncher** below:
-آخرین نسخه پایدار **AppLuncher** را از لینک‌های زیر دریافت کنید:
+آخرین نسخهٔ پایدار اپ‌لانچر را از پیوندهای زیر دریافت کنید:
 
 | Version / نسخه | Type / نوع | Download Link / لینک دانلود |
 | :--- | :--- | :--- |
@@ -30,7 +30,7 @@ Get the latest stable version of **AppLuncher** below:
 > Use the **Installer** for a permanent installation on your system, or the **Portable** version if you want to run it directly from a USB drive without installation.
 > 
 > > [!TIP]
-> > برای نصب دائمی روی سیستم خود از نسخه **Installer** استفاده کنید، و اگر می‌خواهید برنامه را مستقیماً از روی فلش مموری و بدون نصب اجرا کنید، نسخه **Portable** مناسب است.
+> > برای نصب دائمی روی سیستم خود از نسخهٔ نصب‌کننده استفاده کنید. اگر می‌خواهید برنامه را مستقیماً از روی حافظهٔ همراه و بدون نصب اجرا کنید، نسخهٔ قابل‌حمل مناسب است.
 
 ---
 
@@ -38,20 +38,20 @@ Get the latest stable version of **AppLuncher** below:
 
 **AppLuncher** is a Windows Forms application built with **C# and .NET Framework 4.8**. It is designed to replace messy desktop shortcuts with a clean, organized, and lightning-fast command hub. Whether you are a power user, developer, or gamer, AppLuncher lets you access your favorite programs, tools, and scripts in milliseconds.
 
-**AppLuncher** یک اپلیکیشن Windows Forms است که با استفاده از **C# و .NET Framework 4.8** ساخته شده است. این برنامه طراحی شده تا میانبرهای شلوغ دسکتاپ را با یک مرکز فرماندهی تمیز، منظم و فوق‌سریع جایگزین کند. چه یک کاربر حرفه‌ای باشید، چه توسعه‌دهنده و یا گیمر، AppLuncher به شما اجازه می‌دهد در کسری از ثانیه به برنامه‌ها، ابزارها و اسکریپت‌های مورد علاقه خود دسترسی داشته باشید.
+اپ‌لانچر یک برنامهٔ ویندوزی است که با زبان سی‌شارپ و چارچوب دات‌نت نسخهٔ ۴٫۸ ساخته شده است. این برنامه طراحی شده تا میانبرهای شلوغ دسکتاپ را با یک مرکز فرماندهی تمیز، منظم و فوق‌سریع جایگزین کند. چه یک کاربر حرفه‌ای باشید، چه توسعه‌دهنده یا علاقه‌مند به بازی، اپ‌لانچر به شما اجازه می‌دهد در کسری از ثانیه به برنامه‌ها، ابزارها و دست‌نوشته‌های مورد علاقهٔ خود دسترسی داشته باشید.
 
 ---
 
 ## ✨ Features / ویژگی‌ها
 
 - ⚡ **Lightweight & Fast:** Designed specifically for Windows using .NET Framework 4.8 for maximum compatibility.
-- ⚡ **سبک و سریع:** طراحی شده مخصوص ویندوز با استفاده از .NET Framework 4.8 برای حداکثر سازگاری.
+- ⚡ **سبک و سریع:** مخصوص ویندوز طراحی شده است تا با بیشترین سازگاری اجرا شود.
 
 - 🎯 **Quick Launch:** Organize software into clean categories and launch them with a single click or keypress.
 - 🎯 **اجرای سریع:** سازماندهی نرم‌افزارها در دسته‌بندی‌های منظم و اجرای آن‌ها تنها با یک کلیک یا فشردن کلید.
 
 - 📌 **System Tray Integration:** Minimize to the system tray and keep your desktop clean.
-- 📌 **ادغام با System Tray:** قابلیت کوچک شدن در کنار ساعت ویندوز برای حفظ نظم دسکتاپ.
+- 📌 **یکپارچگی با ناحیهٔ اعلان:** قابلیت کوچک‌شدن در کنار ساعت ویندوز برای حفظ نظم دسکتاپ.
 
 - 🔍 **Search & Filter:** Instant search capability to find your apps without browsing menus.
 - 🔍 **جستجو و فیلتر:** قابلیت جستجوی آنی برای یافتن برنامه‌ها بدون نیاز به گشتن در منوها.
@@ -66,7 +66,7 @@ Get the latest stable version of **AppLuncher** below:
 
 ## 📸 Screenshots / اسکرین‌شات‌ها
 
-*(Add your screenshots here) / اسکرین‌شات‌های خود را اینجا قرار دهید*
+*(Add your screenshots here) / تصویرهای محیط برنامه را اینجا قرار دهید*
 
 | Main Interface / رابط اصلی | Settings / Management / تنظیمات و مدیریت |
 | :---: | :---: |
@@ -78,8 +78,8 @@ Get the latest stable version of **AppLuncher** below:
 
 ### Prerequisites / پیش‌نیازها
 
-- **OS / سیستم عامل:** Windows 7 SP1 / 8.1 / 10 / 11
-- **Runtime / محیط اجرا:** [.NET Framework 4.8 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+- **OS / سیستم‌عامل:** ویندوز ۷ با بستهٔ خدماتی ۱، ویندوز ۸٫۱، ویندوز ۱۰ یا ویندوز ۱۱
+- **Runtime / محیط اجرا:** چارچوب دات‌نت نسخهٔ ۴٫۸
 
 ### Installation & Run / نصب و اجرا
 
@@ -95,10 +95,10 @@ Get the latest stable version of **AppLuncher** below:
 
 Free code signing provided by SignPath.io, certificate by SignPath Foundation.
 
-امضای رایگان کد توسط SignPath.io ارائه می‌شود و گواهی امضا متعلق به SignPath Foundation است.
+امضای رایگان کد توسط بنیاد ساین‌پث ارائه می‌شود و گواهی امضا به نام این بنیاد صادر شده است.
 
 ### Privacy Policy / سیاست حریم خصوصی
 
 AppLuncher does not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
 
-AppLuncher هیچ اطلاعاتی را به سیستم‌های دیگر در شبکه ارسال نمی‌کند، مگر اینکه این کار به‌طور مشخص توسط کاربر یا شخصی که برنامه را نصب یا اجرا می‌کند درخواست شده باشد.
+اپ‌لانچر هیچ اطلاعاتی را به سیستم‌های دیگر در شبکه ارسال نمی‌کند، مگر اینکه این کار به‌طور مشخص توسط کاربر یا شخصی که برنامه را نصب یا اجرا می‌کند درخواست شده باشد.
