@@ -94,14 +94,34 @@ Get the latest stable version of **AppLuncher** below:
 
 ---
 
-## 🔐 Code Signing Policy / سیاست امضای کد
+## 🔐 Code Signing Policy
 
 Free code signing provided by SignPath.io, certificate by SignPath Foundation.
 
+### Project roles
+
+- **Authors and maintainers:** [Hamed Movaghari](https://github.com/hmovaghari)
+- **Reviewers:** [Hamed Movaghari](https://github.com/hmovaghari)
+- **Approvers:** [Hamed Movaghari](https://github.com/hmovaghari)
+
+All signed release artifacts are built from this repository's source code and build configuration. Each release is reviewed and approved before signing.
+
+## 🔐 سیاست امضای کد
+
 امضای رایگان کد توسط بنیاد ساین‌پث ارائه می‌شود و گواهی امضا به نام این بنیاد صادر شده است.
 
-### Privacy Policy / سیاست حریم خصوصی
+### نقش‌های پروژه
+
+- **نویسنده و نگهدارنده:** [حامد موقری](https://github.com/hmovaghari)
+- **بازبین:** [حامد موقری](https://github.com/hmovaghari)
+- **تأییدکننده:** [حامد موقری](https://github.com/hmovaghari)
+
+همهٔ فایل‌های انتشار امضاشده از کد منبع و تنظیمات ساخت همین مخزن تهیه می‌شوند. هر نسخه پیش از امضا بازبینی و تأیید می‌شود.
+
+### Privacy Policy
 
 AppLuncher does not transfer any information to other networked systems unless specifically requested by the user or the person installing or operating it.
+
+### سیاست حریم خصوصی
 
 اپ‌لانچر هیچ اطلاعاتی را به سیستم‌های دیگر در شبکه ارسال نمی‌کند، مگر اینکه این کار به‌طور مشخص توسط کاربر یا شخصی که برنامه را نصب یا اجرا می‌کند درخواست شده باشد.
